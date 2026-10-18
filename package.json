@@ -19,6 +19,9 @@
     "build": "npm run build:shared && npm run build -w @profilesync/api && npm run build -w @profilesync/web",
     "typecheck": "npm run build:shared && npm run typecheck --workspaces --if-present",
     "test": "npm run build:shared && npm run test --workspaces --if-present",
+    "test:integration": "npm run build:shared && npm run test:integration -w @profilesync/api",
+    "db:push": "supabase db push",
+    "db:migrations": "supabase migration list",
     "lint": "npm run build:shared && eslint .",
     "lint:fix": "npm run build:shared && eslint . --fix",
     "format": "prettier --write .",
@@ -32,6 +35,7 @@
     "eslint-plugin-react-refresh": "^0.5.7",
     "globals": "^17.13.0",
     "prettier": "^3.9.10",
+    "supabase": "^2.121.0",
     "typescript": "~6.0.3",
     "typescript-eslint": "^8.71.2"
   }
