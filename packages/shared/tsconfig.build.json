@@ -1,0 +1,13 @@
+{
+  // Emits dist/*.js + dist/*.d.ts so Node (the API at runtime) can import this package.
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true
+  },
+  "include": ["src"],
+  "exclude": ["src/**/*.test.ts"]
+}
