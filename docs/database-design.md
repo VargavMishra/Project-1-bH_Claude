@@ -1,8 +1,8 @@
 # Database design
 
 > **Status:** Stage 3. Schema applied to the development project (`yydmzbspnwkjqbawhqng`,
-> region `ap-northeast-1`) on 2026-10-18 with `supabase db push`. Integration tests:
-> see [§9](#9-how-this-is-tested).
+> region `ap-northeast-1`) on 2026-10-18 with `supabase db push`. All 35 integration tests
+> ([§9](#9-how-this-is-tested)) pass against it, and they leave no test data behind.
 
 All schema lives in versioned SQL files in [`supabase/migrations/`](../supabase/migrations).
 The database is the **single source of truth** for profile data: the website and the

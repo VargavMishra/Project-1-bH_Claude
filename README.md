@@ -21,7 +21,7 @@ Android APK ─────┘    (React + Vite)     └────────
 | ----- | -------------------------------------- | -------------------------------------------------------- |
 | 1     | Architecture and technology choices    | ✅ Done — [`docs/architecture.md`](docs/architecture.md) |
 | 2     | Repository, tooling, CI, skeleton apps | ✅ Done — CI green on GitHub                             |
-| 3     | Supabase schema, RLS, triggers         | 🔄 Schema applied to dev; integration tests pending      |
+| 3     | Supabase schema, RLS, triggers         | ✅ Done — applied to dev, 35 integration tests pass      |
 | 4     | Authentication + profile API           | Planned                                                  |
 | 5     | Website: sign-in, profile editor       | Planned                                                  |
 | 6     | Expo WebView app + APK                 | Planned                                                  |
