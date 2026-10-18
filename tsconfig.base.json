@@ -1,0 +1,25 @@
+{
+  // Shared compiler settings. Each package extends this and adds what is specific
+  // to its runtime (Node vs browser). Strictness lives here so it cannot drift.
+  "compilerOptions": {
+    "target": "ES2023",
+    "lib": ["ES2023"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    // arr[i] and record[key] are typed `T | undefined`, forcing a check before use.
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    // Type-only imports must say `import type`, so the emitted JS matches the source.
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    // TypeScript 6 no longer auto-includes every @types package; list them per package.
+    "types": []
+  }
+}

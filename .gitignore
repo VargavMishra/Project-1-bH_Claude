@@ -1,0 +1,48 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+coverage/
+*.tsbuildinfo
+
+# Environment and secrets — never commit these. Only .env.example files are tracked.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.jks
+*.keystore
+*.p8
+*.p12
+credentials.json
+
+# Supabase CLI local state
+supabase/.branches/
+supabase/.temp/
+
+# Expo / React Native
+.expo/
+web-build/
+expo-env.d.ts
+apps/mobile/android/
+apps/mobile/ios/
+*.apk
+*.aab
+
+# Logs
+npm-debug.log*
+*.log
+
+# Local AI-assistant / tool config
+.claude/
+
+# Editors and OS
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+.DS_Store
+Thumbs.db

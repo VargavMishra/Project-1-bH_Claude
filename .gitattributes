@@ -1,0 +1,10 @@
+# Store text files with LF line endings in Git regardless of OS, so Windows and the
+# Linux CI/Render machines see identical files (and Prettier doesn't flag every line).
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.ico binary
+*.apk binary
