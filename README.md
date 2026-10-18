@@ -20,8 +20,8 @@ Android APK ─────┘    (React + Vite)     └────────
 | Stage | Scope                                  | Status                                                   |
 | ----- | -------------------------------------- | -------------------------------------------------------- |
 | 1     | Architecture and technology choices    | ✅ Done — [`docs/architecture.md`](docs/architecture.md) |
-| 2     | Repository, tooling, CI, skeleton apps | ✅ Done locally — CI runs once pushed to GitHub          |
-| 3     | Supabase schema, RLS, triggers         | ⏳ Next — needs a Supabase account (see below)           |
+| 2     | Repository, tooling, CI, skeleton apps | ✅ Done — CI green on GitHub                             |
+| 3     | Supabase schema, RLS, triggers         | 🔄 Schema applied to dev; integration tests pending      |
 | 4     | Authentication + profile API           | Planned                                                  |
 | 5     | Website: sign-in, profile editor       | Planned                                                  |
 | 6     | Expo WebView app + APK                 | Planned                                                  |
@@ -30,6 +30,8 @@ Android APK ─────┘    (React + Vite)     └────────
 | 9     | Deployment (Render + Supabase prod)    | Planned                                                  |
 | 10    | APK release + live demo                | Planned                                                  |
 | 11    | Review, integration plan for S's app   | Planned                                                  |
+
+**Repository:** https://github.com/VargavMishra/Project-1-bH_Claude
 
 **Live URLs:** none yet — they are added here only after a deployment has been verified.
 
@@ -103,9 +105,10 @@ npm run check
 - [Architecture](docs/architecture.md) — components, data flow, key decisions (ADRs)
 - [Tech stack explained](docs/tech-stack-explanation.md) — what each tool does and why
 - [Contributing / development guide](CONTRIBUTING.md) — branches, commits, PRs, releases
+- [Database design](docs/database-design.md) — schema, constraints, RLS, triggers, storage, migrations
 - [Troubleshooting](docs/troubleshooting.md) — problems already hit and how they were fixed
 
-Further guides (database design, authentication, API, deployment, synchronization,
+Further guides (authentication, API, deployment, synchronization,
 integration with S's app, demo script, learning guide) are written as their stages land.
 
 ## Security

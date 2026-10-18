@@ -26,6 +26,42 @@ add sections for authentication, deployment and synchronization.
   skipped script is only a verification step. Verified with a direct esbuild transform.
 - **If ever needed:** `npm install-scripts ls`, then `npm install-scripts approve <pkg>`.
 
+### `gh`, `node` or `npx` "is not recognized" right after installing them
+
+- **Cause:** a program's PATH is fixed when it starts. Windows Terminal (and the Claude app's
+  terminal tabs) keep the PATH from before the install, even in new windows, until every
+  window of that program is closed.
+- **Fix:** fully quit and reopen the terminal, or call the tool by full path:
+  `& "C:\Program Files\GitHub CLI\gh.exe" …`, `& "C:\Program Files\nodejs\npx.cmd" …`.
+
+### `npx.ps1 cannot be loaded because running scripts is disabled on this system`
+
+- **Cause:** Windows PowerShell's default execution policy blocks `.ps1` scripts, and plain
+  `npx` resolves to `npx.ps1`.
+- **Fix:** use `npx.cmd` (no policy change needed), or run the command from `cmd.exe`.
+
+### Signed in to GitHub Desktop, but `gh` / `git push` still ask for a login
+
+- **Cause:** GitHub Desktop keeps its own credential. The GitHub CLI and command-line Git
+  (Git Credential Manager) each need their own sign-in.
+- **Fix:** `git credential-manager github login --browser` for Git, and
+  `gh auth login --web` for the GitHub CLI. Check with `git credential-manager github list`
+  and `gh auth status`.
+
+## Supabase CLI
+
+### `Cannot find project ref. Have you run supabase link?`
+
+- Run `npx supabase link --project-ref <ref>` once from the repo root. The ref is in
+  `npx supabase projects list`. With a recent CLI, `link` and `db push` use your
+  `supabase login` token (a temporary login role); no database password is needed.
+
+### `supabase projects api-keys` shows the secret key as `sb_secret_xxxx·····`
+
+- That is deliberate: Supabase never returns the full secret key through the API. Copy it
+  from **Dashboard → Project Settings → API Keys → Secret keys** (reveal/copy). Only the
+  integration tests need it; the API never does.
+
 ## Mobile
 
 ### `No overload matches this call … props: never` on `<WebView>`
