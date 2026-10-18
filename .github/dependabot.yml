@@ -1,0 +1,28 @@
+# Opens weekly PRs for dependency updates. Each PR runs CI, so an update that breaks
+# lint/types/tests is caught before merge. Expo packages are excluded: they must be
+# upgraded together with `npx expo install --fix` during a deliberate SDK upgrade.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    groups:
+      dev-tooling:
+        dependency-type: development
+
+  - package-ecosystem: npm
+    directory: /apps/mobile
+    schedule:
+      interval: monthly
+    ignore:
+      - dependency-name: 'expo*'
+      - dependency-name: 'react'
+      - dependency-name: 'react-native*'
+      - dependency-name: '@types/react'
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly

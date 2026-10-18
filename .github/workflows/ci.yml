@@ -1,0 +1,89 @@
+# Continuous Integration: runs on every pull request and every push to main.
+# A PR may only merge when these jobs are green (enforced by branch protection on GitHub).
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+# Least privilege: CI only needs to read the code.
+permissions:
+  contents: read
+
+# A new push to the same branch cancels the older, now-irrelevant run.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  web-api:
+    name: Web, API & shared
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      # `npm ci` installs exactly what package-lock.json says (no silent upgrades).
+      - run: npm ci
+
+      - name: Formatting (Prettier)
+        run: npm run format:check
+
+      # Builds the shared contract first: type-aware rules need its compiled declarations.
+      - name: Lint (ESLint)
+        run: npm run lint
+
+      - name: Type check (tsc)
+        run: npm run typecheck
+
+      - name: Tests (Vitest)
+        run: npm test
+
+      - name: Production build
+        run: npm run build
+
+      - name: Dependency audit (production dependencies, high+ severity fails)
+        run: npm audit --omit=dev --audit-level=high
+
+  mobile:
+    name: Mobile shell
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: apps/mobile
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+          cache-dependency-path: apps/mobile/package-lock.json
+
+      - run: npm ci
+
+      - name: Type check (tsc)
+        run: npm run typecheck
+
+      - name: Expo doctor (SDK/dependency compatibility)
+        run: npx --yes expo-doctor
+
+      # Bundles the app's JavaScript exactly as an APK build would, without needing
+      # an Android toolchain. Catches import/bundling errors before using EAS build quota.
+      - name: Bundle Android JavaScript
+        run: npx expo export --platform android --output-dir "$RUNNER_TEMP/expo-export"
+        env:
+          EXPO_PUBLIC_WEB_URL: https://ci.invalid
+
+      # Informational: current advisories are in Expo's build-time tooling (CLI, Metro),
+      # not in code shipped inside the APK. See docs/troubleshooting.md ("npm audit").
+      - name: Dependency audit (informational)
+        run: npm audit --omit=dev
+        continue-on-error: true
