@@ -1,0 +1,12 @@
+{
+  // Used by `npm run build`: compiles only runtime source to dist/ for `node dist/server.js`.
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist",
+    "sourceMap": true,
+    "types": ["node"]
+  },
+  "include": ["src"],
+  "exclude": ["src/**/*.test.ts"]
+}
