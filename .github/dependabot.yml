@@ -11,6 +11,15 @@ updates:
     groups:
       dev-tooling:
         dependency-type: development
+    ignore:
+      # typescript-eslint supports TypeScript <6.1 only; a TS 7 bump breaks `npm ci`.
+      # Remove once `npm view typescript-eslint peerDependencies` allows 7.
+      - dependency-name: 'typescript'
+        update-types: ['version-update:semver-major']
+      # Node type definitions must match the Node major we run (24 LTS, see .nvmrc).
+      # Bump this together with .nvmrc, engines and the Render runtime.
+      - dependency-name: '@types/node'
+        update-types: ['version-update:semver-major']
 
   - package-ecosystem: npm
     directory: /apps/mobile
@@ -21,6 +30,8 @@ updates:
       - dependency-name: 'react'
       - dependency-name: 'react-native*'
       - dependency-name: '@types/react'
+      # The Expo SDK pins its TypeScript version; expo-doctor rejects anything else.
+      - dependency-name: 'typescript'
 
   - package-ecosystem: github-actions
     directory: /
