@@ -1,0 +1,17 @@
+{
+  // Browser code. Vite (not tsc) produces the bundle, so tsc only type-checks here.
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "types": ["vite/client"],
+    "jsx": "react-jsx",
+    "allowImportingTsExtensions": true,
+    "moduleDetection": "force",
+    "erasableSyntaxOnly": true,
+    "noEmit": true
+  },
+  "include": ["src"]
+}

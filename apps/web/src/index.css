@@ -1,0 +1,92 @@
+:root {
+  --color-bg: #f6f7fb;
+  --color-surface: #ffffff;
+  --color-text: #161b26;
+  --color-muted: #5a6275;
+  --color-border: #dfe3ec;
+  --color-primary: #1f4fd1;
+  --color-ok: #127a3f;
+  --color-error: #b42318;
+  --radius: 12px;
+  --space: 16px;
+
+  color-scheme: light dark;
+  font-family:
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
+  line-height: 1.5;
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #0f1218;
+    --color-surface: #181c25;
+    --color-text: #e8ebf2;
+    --color-muted: #9aa3b5;
+    --color-border: #2a3040;
+    --color-primary: #7c9cff;
+    --color-ok: #4ade80;
+    --color-error: #f87171;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  background: var(--color-bg);
+}
+
+/* Mobile-first: a single column with a 16px gutter; wider screens get a centred column. */
+.page {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: calc(var(--space) * 2) var(--space);
+  padding-top: max(calc(var(--space) * 2), env(safe-area-inset-top));
+}
+
+h1 {
+  margin: 0 0 4px;
+  font-size: 1.75rem;
+}
+
+.muted {
+  color: var(--color-muted);
+  margin-top: 0;
+}
+
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space);
+  margin-top: calc(var(--space) * 1.5);
+}
+
+.card h2 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+}
+
+.ok {
+  color: var(--color-ok);
+}
+
+.error {
+  color: var(--color-error);
+}
+
+code {
+  font-size: 0.9em;
+}
